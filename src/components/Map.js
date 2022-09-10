@@ -65,10 +65,10 @@ function Map({ data }) {
   }
 
   function onClick(loc) {
-    if (loc && data) {
+    if (loc) {
       const venue = loc.substring(5, loc.length - 6);
       console.log(venue);
-      const selected = data.filter((item) => item.venue.includes(venue));
+      const selected = data?.filter((item) => item.venue.includes(venue));
       setSelectedLoc(selected);
     }
   }
