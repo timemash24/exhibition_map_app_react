@@ -6,6 +6,7 @@ const LOC_LONGITUDE = 126.9784147;
 
 function Map({ data }) {
   const [selectedLoc, setSelectedLoc] = useState([]);
+  const [exhibitInfo, setExhibitInfo] = useState([...data]);
 
   const positions = [
     {
@@ -17,6 +18,11 @@ function Map({ data }) {
       latlng: new kakao.maps.LatLng(37.4810702, 127.015221),
     },
   ];
+
+  const test = () => {
+    console.log(data);
+    setExhibitInfo(data);
+  };
 
   useEffect(() => {
     const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -65,10 +71,11 @@ function Map({ data }) {
   }
 
   function onClick(loc) {
+    console.log(exhibitInfo);
     if (loc) {
       const venue = loc.substring(5, loc.length - 6);
       console.log(venue);
-      const selected = data?.filter((item) => item.venue.includes(venue));
+      const selected = exhibitInfo.filter((item) => item.venue.includes(venue));
       setSelectedLoc(selected);
     }
   }
